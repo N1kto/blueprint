@@ -261,6 +261,7 @@ export interface IMutableTableState {
     showRowHeadersLoading?: boolean;
     showTableInteractionBar?: boolean;
     showZebraStriping?: boolean;
+    renderTable?: boolean;
 }
 
 const DEFAULT_STATE: IMutableTableState = {
@@ -308,6 +309,7 @@ const DEFAULT_STATE: IMutableTableState = {
     showRowHeadersLoading: false,
     showTableInteractionBar: false,
     showZebraStriping: false,
+    renderTable: true,
 };
 
 // eslint-disable-next-line @typescript-eslint/ban-types
@@ -342,7 +344,7 @@ export class MutableTable extends React.Component<{}, IMutableTableState> {
                     branchClassName={"layout-passthrough-fill"}
                 >
                     <div className={layoutBoundary ? "layout-boundary" : "layout-passthrough-fill"}>
-                        {this.renderTable()}
+                        {this.state.renderTable && this.renderTable()}
                     </div>
                 </SlowLayoutStack>
                 {this.renderSidebar()}
@@ -663,6 +665,7 @@ export class MutableTable extends React.Component<{}, IMutableTableState> {
         return (
             <div className={classNames("sidebar", Classes.ELEVATION_0)}>
                 <H4>Table</H4>
+                {this.renderSwitch("Render table", "renderTable")}
                 <H6>Display</H6>
                 {this.renderSwitch("Inline", "showInline")}
                 {this.renderSwitch("Focus cell", "showFocusCell")}

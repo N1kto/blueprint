@@ -755,6 +755,8 @@ export class TableQuadrantStack extends AbstractComponent2<ITableQuadrantStackPr
         const mainRefs = this.quadrantRefs[QuadrantType.MAIN];
         const mainScrollContainer = mainRefs.scrollContainer;
 
+        if (mainScrollContainer == null) return;
+
         //
         // Reads (batched to avoid DOM thrashing)
         //
